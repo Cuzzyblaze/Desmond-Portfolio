@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Desmond Didacus — Portfolio
 
-## Getting Started
+A single-page portfolio site for Desmond Didacus, Software Developer & founder
+of [ICT Result](https://ictresult.com).
 
-First, run the development server:
+Built with Next.js 15 (App Router), TypeScript, Tailwind CSS, and Framer Motion.
+
+## Before you deploy: add your photo
+
+The hero section expects a headshot at `public/profile.jpg`. Until that file
+exists it falls back to a "DD" initials avatar automatically, so the site
+works either way — but for the real deal:
+
+1. Drop your photo in as `public/profile.jpg` (a square-ish image, at least
+   600×600px, works best).
+2. That's it — the `Avatar` component picks it up automatically.
+
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Editing content
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+All of the text content — projects, services, stats, and contact/social
+links — lives in one place: [`src/lib/data.ts`](src/lib/data.ts). Edit that
+file to update anything on the site without touching components.
 
-## Learn More
+## Deploying to Vercel via GitHub
 
-To learn more about Next.js, take a look at the following resources:
+1. **Push this project to GitHub:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   git init
+   git add .
+   git commit -m "Initial portfolio site"
+   git branch -M main
+   git remote add origin https://github.com/<your-username>/<repo-name>.git
+   git push -u origin main
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Import into Vercel:**
+   - Go to [vercel.com/new](https://vercel.com/new)
+   - Select "Import Git Repository" and choose the repo you just pushed
+   - Framework preset: Next.js (auto-detected) — no config needed
+   - Click **Deploy**
 
-## Deploy on Vercel
+3. Vercel will give you a live URL (e.g. `your-project.vercel.app`). You can
+   later attach a custom domain from the Vercel project's **Settings → Domains**
+   tab.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Every future `git push` to `main` automatically redeploys the site.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Project structure
+
+```
+src/
+  app/            # Next.js app router entry (layout, page, global styles)
+  components/      # All page sections and UI pieces
+  lib/data.ts      # Projects, services, stats, contact/social links
+```
